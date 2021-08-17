@@ -11,7 +11,7 @@ steps:
                    --default-repo gcr.io/$PROJECT_ID \
                    --push=true
     # Test images
-    skaffold test --build-artifacts=/workspace/artifacts.json
+    #skaffold test --build-artifacts=/workspace/artifacts.json
 - name: 'google/cloud-sdk:latest'
   id: create-release
   entrypoint: 'sh'
@@ -20,9 +20,7 @@ steps:
   - -c
   - |
     gcloud config set deploy/region us-central1
-    gcloud alpha deploy apply --file pipeline.yaml
-    gcloud alpha deploy apply --file staging.yaml
-    gcloud alpha deploy apply --file prod.yaml
+    gcloud alpha deploy apply --file clouddeploy.yaml
     gcloud alpha deploy releases create $SHORT_SHA-$(date +%s) \
                         --delivery-pipeline sample-app \
                         --description "$(git log -1  --pretty='%s')" \
