@@ -1,27 +1,13 @@
-apiVersion: skaffold/v2beta16
+apiVersion: skaffold/v2beta12
 kind: Config
-metadata:
-  name: full-stack
 build:
   artifacts:
-  - image: sample-app
-    context: ./
+  - image: skaffold-example
 deploy:
-  kustomize:
-    paths:
-    - k8s/dev/
+  kubectl:
+    manifests:
+      - k8s-*
 portForward:
 - resourceType: service
   resourceName: sample-app-dev
   port: 8080
-profiles:
-- name: staging
-  deploy:
-    kustomize:
-      paths:
-      - k8s/staging/
-- name: prod
-  deploy:
-    kustomize:
-      paths:
-      - k8s/prod/
