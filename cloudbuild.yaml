@@ -22,7 +22,6 @@ steps:
     gcloud config set deploy/region
     gcloud alpha deploy apply --file deploy/pipeline.yaml
     gcloud alpha deploy apply --file deploy/staging.yaml
-    gcloud alpha deploy apply --file deploy/canary.yaml
     gcloud alpha deploy apply --file deploy/prod.yaml
     gcloud alpha deploy releases create $SHORT_SHA-$(date +%s) \
                         --delivery-pipeline sample-app \
