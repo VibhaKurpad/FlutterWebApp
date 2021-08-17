@@ -19,7 +19,7 @@ steps:
   - -xe
   - -c
   - |
-    gcloud config set deploy/region
+    gcloud config set deploy/region us-central1
     gcloud alpha deploy apply --file pipeline.yaml
     gcloud alpha deploy apply --file staging.yaml
     gcloud alpha deploy apply --file prod.yaml
