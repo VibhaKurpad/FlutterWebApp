@@ -8,7 +8,7 @@ steps:
   - |
     # Build and push images
     skaffold build --file-output=/workspace/artifacts.json \
-                   --default-repo gcr.io/$PROJECT_ID \
+                   --default-repo gcr.io/$PROJECT_ID/skaffold-example \
                    --push=true
     # Test images
     #skaffold test --build-artifacts=/workspace/artifacts.json
