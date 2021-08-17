@@ -22,7 +22,7 @@ steps:
     gcloud config set deploy/region us-central1
     gcloud alpha deploy apply --file clouddeploy.yaml
     gcloud alpha deploy releases create $SHORT_SHA-$(date +%s) \
-                        --delivery-pipeline sample-app \
+                        --delivery-pipeline cicd-demo \
                         --description "$(git log -1  --pretty='%s')" \
                         --region us-central1 \
                         --build-artifacts /workspace/artifacts.json

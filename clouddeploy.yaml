@@ -1,11 +1,13 @@
 apiVersion: deploy.cloud.google.com/v1beta1
 kind: DeliveryPipeline
 metadata:
- name: sample-app
+ name: cicd-demo
 description: main application DeliveryPipeline
 serialPipeline:
  stages:
- - targetId: staging
+ - targetId: dev
+   profiles: []
+ - targetId: test
    profiles: []
  - targetId: prod
    profiles: []
@@ -14,12 +16,25 @@ serialPipeline:
 apiVersion: deploy.cloud.google.com/v1beta1
 kind: Target
 metadata:
- name: staging
-description: staging cluster
+ name: dev
+description: development cluster
 gkeCluster:
 
- project: akshayk-poc
- cluster: cd-staging
+ project: vibhak-cicd-project
+ cluster: dev-cluster
+ location: us-central1
+
+---
+
+apiVersion: deploy.cloud.google.com/v1beta1
+kind: Target
+metadata:
+ name: test
+description: testing cluster
+gkeCluster:
+
+ project: vibhak-cicd-project
+ cluster: test-cluster
  location: us-central1
 
 ---
@@ -28,9 +43,9 @@ apiVersion: deploy.cloud.google.com/v1beta1
 kind: Target
 metadata:
  name: prod
-description: prod cluster
+description: production cluster
 gkeCluster:
 
- project: akshayk-poc
- cluster: cd-prod
+ project: vibhak-cicd-project
+ cluster: prod-cluster
  location: us-central1 
