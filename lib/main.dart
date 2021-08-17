@@ -27,7 +27,7 @@ class App extends StatelessWidget {
         buttonTheme: Theme.of(context).buttonTheme.copyWith(
               highlightColor: Colors.red,
             ),
-        primarySwatch: Colors.indigo,
+        primarySwatch: Colors.red,
         textTheme: GoogleFonts.robotoTextTheme(
           Theme.of(context).textTheme,
         ),
