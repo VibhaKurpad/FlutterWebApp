@@ -25,7 +25,7 @@ class App extends StatelessWidget {
       title: 'Firebase Meetup',
       theme: ThemeData(
         buttonTheme: Theme.of(context).buttonTheme.copyWith(
-              highlightColor: Colors.lightBlue,
+              highlightColor: Colors.red,
             ),
         primarySwatch: Colors.indigo,
         textTheme: GoogleFonts.robotoTextTheme(
@@ -74,7 +74,7 @@ class HomePage extends StatelessWidget {
           ),
           const Header("What we'll be doing"),
           const Paragraph(
-            'Join us for a day full of Firebase Workshops and Burgers!',
+            'Join us for a day full of Firebase Workshops and Pizza!',
           ),
           Consumer<ApplicationState>(
             builder: (context, appState, _) => Column(
