@@ -1,0 +1,8 @@
+serialPipeline:
+  stages:
+  - targetId: staging
+    profiles:
+    - staging
+  - targetId: prod
+    profiles:
+    - prod
