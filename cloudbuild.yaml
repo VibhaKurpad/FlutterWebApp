@@ -1,15 +1,38 @@
-- name: gcr.io/k8s-skaffold/skaffold
+steps:
+- name: 'gcr.io/k8s-skaffold/skaffold'
+  id: build-and-test
+  entrypoint: 'sh'
   args:
-    - skaffold
-    - build
-    - '--interactive=false'
-    - '--file-output=artifacts.json'
-- name: gcr.io/google.com/cloudsdktool/cloud-sdk
-  entrypoint: bash
+  - -xe
+  - -c
+  - |
+    # Build and push images
+    skaffold build --file-output=/workspace/artifacts.json \
+                   --default-repo gcr.io/$PROJECT_ID \
+                   --push=true
+    # Test images
+    skaffold test --build-artifacts=/workspace/artifacts.json
+- name: 'google/cloud-sdk:latest'
+  id: create-release
+  entrypoint: 'sh'
   args:
-    - 'c'
-    - >
-      gcloud alpha deploy releases create $(date +%y%m%d-%s)
-      --delivery-pipeline=my-demo-app-1 --build-artifacts=artifacts.json
-      --region=us-central1 --annotation=commitId:$REVISION_ID  
-    
+  - -xe
+  - -c
+  - |
+    gcloud config set deploy/region us-central1
+    gcloud alpha deploy apply --file pipeline.yaml
+    gcloud alpha deploy apply --file staging.yaml
+    gcloud alpha deploy apply --file prod.yaml
+    gcloud alpha deploy releases create $SHORT_SHA-$(date +%s) \
+                        --delivery-pipeline sample-app \
+                        --description "$(git log -1  --pretty='%s')" \
+                        --region us-central1 \
+                        --build-artifacts /workspace/artifacts.json
+artifacts:
+  objects:
+    location: 'gs://$PROJECT_ID-gceme-artifacts/'
+    paths:
+    - '/workspace/artifacts.json'
+options:
+  machineType: E2_HIGHCPU_8
+timeout: 3600s
