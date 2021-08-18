@@ -44,6 +44,7 @@ kind: Target
 metadata:
  name: prod
 description: production cluster
+requireApproval: true
 gkeCluster:
 
  project: vibhak-cicd-project
