@@ -74,7 +74,7 @@ class HomePage extends StatelessWidget {
           ),
           const Header("What we'll be doing"),
           const Paragraph(
-            'Join us for a day full of Firebase Workshops and Fries!',
+            'Join us for a day full of Firebase Workshops and Pizza!',
           ),
           Consumer<ApplicationState>(
             builder: (context, appState, _) => Column(
