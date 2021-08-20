@@ -30,6 +30,6 @@ spec:
     spec:
       containers:
       - name: skaffold-example
-        image: gcr.io/akshayk-poc/skaffold-example@sha256:dcb2c560ce0af61412c7f6e810f6924735cf84edd32d32db8f8e88be024b4900
+        image: skaffold-example
         ports:
         - containerPort: 8080
