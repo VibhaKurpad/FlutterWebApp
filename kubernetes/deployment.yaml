@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: skaffold-example
+  name: <name-of-image>
   labels: 
-    app: skaffold-example
+    app: <name-of-image>
 spec:
   selector:
-    app: skaffold-example
+    app: <name-of-image>
   type: LoadBalancer
   ports:
   - port: 80
@@ -15,21 +15,21 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: skaffold-example
+  name: <name-of-image>
   labels:
-    app: skaffold-example
+    app: <name-of-image>
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: skaffold-example
+      app: <name-of-image>
   template:
     metadata:
       labels:
-        app: skaffold-example
+        app: <name-of-image>
     spec:
       containers:
-      - name: skaffold-example
-        image: gcr.io/akshayk-poc/skaffold-example@sha256:dcb2c560ce0af61412c7f6e810f6924735cf84edd32d32db8f8e88be024b4900
+      - name: <name-of-image>
+        image: <path-to-image>
         ports:
         - containerPort: 8080

@@ -1,3 +1,4 @@
+#Cloud build trigger which registers the pipeline and creates a release which gets pushed to the dev target in the pipeline
 steps:
 - name: 'gcr.io/k8s-skaffold/skaffold'
   id: build-and-test

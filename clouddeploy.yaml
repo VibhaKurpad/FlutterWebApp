@@ -1,7 +1,8 @@
+#Defines the sequence of the delivery pipeline
 apiVersion: deploy.cloud.google.com/v1beta1
 kind: DeliveryPipeline
 metadata:
- name: cicd-demo
+ name: <name-of-delivery-pipeline>
 description: main application DeliveryPipeline
 serialPipeline:
  stages:
@@ -20,8 +21,8 @@ metadata:
 description: development cluster
 gkeCluster:
 
- project: vibhak-cicd-project
- cluster: dev-cluster
+ project: <project-id>
+ cluster: <name-of-dev-cluster>
  location: us-central1
 
 ---
@@ -33,8 +34,8 @@ metadata:
 description: testing cluster
 gkeCluster:
 
- project: vibhak-cicd-project
- cluster: test-cluster
+ project: <project-id>
+ cluster: <name-of-test-cluster>
  location: us-central1
 
 ---
@@ -47,6 +48,6 @@ description: production cluster
 requireApproval: true
 gkeCluster:
 
- project: vibhak-cicd-project
- cluster: prod-cluster
+ project: <project-id>
+ cluster: <name-of-prod-cluster>
  location: us-central1 

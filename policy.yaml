@@ -1,8 +1,9 @@
+#This policy allows images only from the path mentioned in the admissionWhitelistPatterns
 admissionWhitelistPatterns:
-- namePattern: gcr.io/vibhak-cicd-project/*
+- namePattern: <path-to-container-registry>
 globalPolicyEvaluationMode: ENABLE
 defaultAdmissionRule:
   evaluationMode: REQUIRE_ATTESTATION
   enforcementMode: ENFORCED_BLOCK_AND_AUDIT_LOG
   requireAttestationsBy:
-  - projects/vibhak-cicd-project/attestors/my-binauthz-demo
+  - projects/<project-id>/attestors/<attestor-name>
