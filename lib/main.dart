@@ -27,7 +27,7 @@ class App extends StatelessWidget {
         buttonTheme: Theme.of(context).buttonTheme.copyWith(
               highlightColor: Colors.red,
             ),
-        primarySwatch: Colors.red,
+        primarySwatch: Colors.indigo,
         textTheme: GoogleFonts.robotoTextTheme(
           Theme.of(context).textTheme,
         ),
@@ -74,7 +74,7 @@ class HomePage extends StatelessWidget {
           ),
           const Header("What we'll be doing"),
           const Paragraph(
-            'Join us for a day full of Firebase Workshops and Pizzas!',
+            'Join us for a day full of Firebase Workshops and Burgers!!',
           ),
           Consumer<ApplicationState>(
             builder: (context, appState, _) => Column(
